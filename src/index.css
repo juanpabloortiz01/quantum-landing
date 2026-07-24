@@ -75,6 +75,30 @@ body {
   color: var(--purple-accent);
 }
 
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 24px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-link {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white-muted);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.navbar-link:hover {
+  color: var(--white);
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+}
+
 .navbar-cta {
   display: inline-flex;
   align-items: center;
@@ -1046,7 +1070,8 @@ body {
 
 /* ─── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .navbar { padding: 16px 24px; }
+  .navbar { padding: 14px 20px; }
+  .navbar-links { display: none; }
   .section { padding: 72px 24px; }
 
   /* Minimal hero mobile */

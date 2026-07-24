@@ -70,7 +70,15 @@ export default function App() {
     <>
       {/* NAVBAR */}
       <nav className="navbar">
-        <div className="navbar-logo">Quantum<span>.</span></div>
+        <a href="#hero" className="navbar-logo" style={{ textDecoration: 'none' }}>Quantum<span>.</span></a>
+        
+        <div className="navbar-links">
+          <a href="#demo-restaurantes" className="navbar-link">Restaurantes</a>
+          <a href="#servicios" className="navbar-link">Servicios</a>
+          <a href="#como-funciona" className="navbar-link">Cómo Funciona</a>
+          <a href="#contacto" className="navbar-link">Contacto</a>
+        </div>
+
         <a id="navbar-whatsapp-cta" href={WA_URL} target="_blank" rel="noopener noreferrer" className="navbar-cta">
           <IconWhatsApp />
           WhatsApp

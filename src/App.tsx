@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState as _useState } from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
 
 /* ─── WhatsApp config ──────────────────────────────────── */
@@ -62,60 +63,6 @@ function useReveal() {
     return () => obs.disconnect()
   }, [])
   return ref
-}
-
-/* ─── Privacy Accordion ─────────────────────────────────── */
-const privacyItems = [
-  {
-    title: '1. Responsable del Tratamiento',
-    body: 'Nombre comercial: Quantum Automatizaciones. Correo de contacto: contacto@quantum-ia.com. Ubicación: Ecuador — América Latina. Somos responsables del tratamiento de los datos personales recopilados a través de esta página web.',
-  },
-  {
-    title: '2. Datos que Recopilamos',
-    body: 'Datos proporcionados voluntariamente al iniciar conversación por WhatsApp: nombre, número de teléfono y mensajes enviados. Datos de navegación: dirección IP, tipo de dispositivo, ubicación general y páginas visitadas mediante herramientas de analítica web.',
-  },
-  {
-    title: '3. Finalidad del Tratamiento',
-    body: 'Usamos tus datos para: (a) responder a tus consultas e iniciar conversaciones de soporte o ventas vía WhatsApp, (b) evaluar y diseñar propuestas de automatización con IA adaptadas a tu negocio, (c) enviar información comercial con tu autorización, y (d) analizar el tráfico web para mejorar la experiencia de usuario.',
-  },
-  {
-    title: '4. WhatsApp y Terceros',
-    body: 'La interacción por chat se rige bajo los términos de privacidad de WhatsApp / Meta Platforms. Los datos compartidos en el chat pueden ser procesados mediante infraestructura en la nube o agentes automatizados exclusivamente para gestionar la atención al cliente, garantizando la confidencialidad de la información de tu negocio.',
-  },
-  {
-    title: '5. Tus Derechos',
-    body: 'Tienes derecho a acceder, corregir o eliminar tus datos personales en cualquier momento. Para solicitar la eliminación de tus datos, envía un correo a: contacto@quantum-ia.com con el asunto "Eliminación de datos". Atenderemos tu solicitud en un plazo máximo de 30 días.',
-  },
-  {
-    title: '6. Cookies y Almacenamiento',
-    body: 'Este sitio puede utilizar cookies técnicas necesarias para el funcionamiento básico de la web, así como cookies de seguimiento para analítica (ej. Google Analytics o Meta Pixel) que nos ayudan a medir el rendimiento y mejorar nuestros servicios. Puedes configurar tu navegador para rechazar cookies opcionales.',
-  },
-]
-
-function PrivacyAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-  return (
-    <div className="privacy-accordion">
-      {privacyItems.map((item, i) => (
-        <div key={i} className={`privacy-item ${openIndex === i ? 'open' : ''}`}>
-          <div
-            className="privacy-header"
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && setOpenIndex(openIndex === i ? null : i)}
-            aria-expanded={openIndex === i}
-          >
-            {item.title}
-            <IconChevronDown />
-          </div>
-          <div className="privacy-body">
-            <div className="privacy-body-inner">{item.body}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
 }
 
 /* ─── APP ──────────────────────────────────────────────── */
@@ -325,19 +272,24 @@ export default function App() {
 
       <div className="section-divider" />
 
-      {/* ── FOOTER / PRIVACIDAD ───────────────────────────── */}
-      <footer id="privacidad">
+      {/* ── FOOTER ───────────────────────────────────────── */}
+      <footer id="footer">
         <div className="footer">
-          <div className="footer-top">
+          <div className="footer-top" style={{ gridTemplateColumns: '1fr 1fr' }}>
             <div>
               <div className="footer-logo">Quantum<span>.</span></div>
               <p className="footer-tagline">
                 Automatización inteligente para empresas que quieren crecer sin límites.
               </p>
             </div>
-            <div className="privacy-section">
-              <h3>Política de Privacidad</h3>
-              <PrivacyAccordion />
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 }}>
+              <p style={{ fontSize: 13, color: 'var(--white-muted)', marginBottom: 4 }}>Legal</p>
+              <Link
+                to="/privacidad"
+                className="footer-privacy-link"
+              >
+                Política de Privacidad →
+              </Link>
             </div>
           </div>
           <div className="footer-bottom">

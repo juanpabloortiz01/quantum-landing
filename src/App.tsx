@@ -120,7 +120,6 @@ function PrivacyAccordion() {
 
 /* ─── APP ──────────────────────────────────────────────── */
 export default function App() {
-  const r1 = useReveal()
   const r2 = useReveal()
   const r3 = useReveal()
   const r4 = useReveal()
